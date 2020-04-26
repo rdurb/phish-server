@@ -1,0 +1,429 @@
+@font-face {
+  font-family: "Cabin-Regular";
+  src: url("fonts/Cabin-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+/* CSS reset */
+html {
+  background: url(background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Cabin-Regular", Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  position: relative;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+fieldset,
+img {
+  border: 0;
+}
+input {
+  border: 1px solid #b0b0b0;
+  padding: 3px 5px 4px;
+  color: #979797;
+  width: 190px;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+ol,
+ul {
+  list-style: none;
+}
+caption,
+th {
+  text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+q:before,
+q:after {
+  content: "";
+}
+abbr,
+acronym {
+  border: 0;
+}
+.ie7 body {
+  overflow: hidden;
+}
+a {
+  color: #333;
+  text-decoration: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.container {
+  position: relative;
+  text-align: center;
+}
+.clr {
+  clear: both;
+}
+.container > header {
+  padding: 30px 30px 10px 20px;
+  margin: 0px 20px 10px 20px;
+  position: relative;
+  display: block;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+.container > header h1 {
+  font-family: "Cabin-Regular", "Arial Narrow", Arial, sans-serif;
+  font-size: 35px;
+  line-height: 35px;
+  position: relative;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  padding: 0px 0px 5px 0px;
+}
+.container > header h1 span {
+}
+.container > header h2,
+p.info {
+  font-size: 16px;
+  font-style: italic;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+/* Header Style */
+.header {
+  font-family: "Cabin-Regular", Arial, sans-serif;
+  height: 40px;
+  font-size: 11px;
+  width: 100%;
+  background: #000;
+  opacity: 0.9;
+  text-transform: uppercase;
+  z-index: 9999;
+  position: relative;
+  -moz-box-shadow: 1px 0px 2px #000;
+  -webkit-box-shadow: 1px 0px 2px #000;
+  box-shadow: 1px 0px 2px #000;
+}
+.header div.left {
+  padding: 0px 10px;
+  color: #fff;
+  display: block;
+  position: absolute;
+  left: 0;
+}
+#HeaderLogo {
+  display: block;
+  float: left;
+  width: 65px;
+  height: 54px;
+  background: url(TCU_BANNER.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#HeaderLabel {
+  font-family: "Cabin-Regular", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 2px;
+  display: block;
+  float: left;
+  font-size: 20px;
+  padding: 8px 10px 10px 10px;
+}
+
+.header div.right {
+  display: block;
+  position: absolute;
+  right: 0;
+}
+#SystemID {
+  padding: 12px 10px;
+  display: inline-block;
+  vertical-align: middle;
+  letter-spacing: 1px;
+  color: #fff;
+  font-size: 16px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 767px) {
+  .container > header {
+    text-align: center;
+  }
+}
+
+/************************************************************************************
+* Login Form
+************************************************************************************/
+#LoginInterface {
+  background: #4d1979;
+  border: 0px solid #4d1979;
+  border-radius: 0px;
+  margin: 50px auto 0;
+  width: 300px;
+  opacity: 0.8;
+  padding: 25px 0 0px 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 0%);
+  animation: intro 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+/* Intro animation */
+@keyframes intro {
+  from {
+    opacity: 0;
+    top: -400px;
+  }
+  to {
+    opacity: 0.9;
+    top: 100%;
+  }
+}
+
+input[type="password"],
+input[type="text"] {
+  background: url("http://i.minus.com/ibhqW9Buanohx2.png") center left no-repeat,
+    linear-gradient(top, #d6d7d7, #dee0e0);
+  border: 2px solid #ffffff;
+  border-radius: 0px;
+  box-sizing: border-box;
+  color: #ffffff;
+  height: 40px;
+  margin: 0px 0 10px 0px;
+  padding: 10px;
+  padding-left: 37px;
+  transition: box-shadow 0.3s;
+  width: 240px;
+  background: #4d1979;
+  font-size: 15px;
+}
+input[type="password"]:focus,
+input[type="text"]:focus {
+  box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
+  outline: 0;
+}
+.show-password {
+  display: block;
+  height: 16px;
+  margin: 26px 0 0 28px;
+  width: 87px;
+}
+input[type="checkbox"] {
+  cursor: pointer;
+  height: 16px;
+  opacity: 0;
+  position: relative;
+  width: 64px;
+}
+input[type="checkbox"]:checked {
+  left: 29px;
+  width: 58px;
+}
+input[type="checkbox"]:checked + .toggle {
+  background-position: 0 -16px;
+}
+
+input[type="submit"],
+input[type="button"] {
+  width: 240px;
+  height: 35px;
+  display: block;
+  font-family: "Cabin-Regular", Arial, "Helvetica", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #4d1979;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 6px;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+  border: none;
+  background-color: #ffffff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+input[type="submit"]:active,
+input[type="button"]:active {
+  top: 0px;
+  box-shadow: inset 0px 1px 0px #4d1979, 0px 2px 0px 0px #999999,
+    0px 5px 3px #999;
+}
+
+.spinner {
+  margin: auto;
+  position: relative;
+  content: "";
+  box-sizing: border-box;
+  top: -25px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #4d1979;
+  border-bottom-color: #4d1979;
+  animation: spinner 0.8s ease infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#userid {
+  background: url(person.svg) no-repeat 10px;
+  background-size: 20px 20px;
+}
+#pwd {
+  background: url(locked.svg) no-repeat 10px;
+  background-size: 20px 20px;
+}
+
+#help {
+  transform: rotate(-90deg);
+  transform-origin: 23px 53px;
+  float: left;
+  position: absolute;
+  background: #f44336;
+  width: 86px;
+  color: #ffffff;
+}
+
+#InfoLinks {
+  padding: 10px 30px;
+  margin: 0px 0 0 0;
+}
+#InfoLinks a {
+  color: #ffffff;
+  font-weight: normal;
+  line-height: 22px;
+}
+
+#ptloginerrorcont {
+  text-align: center;
+  background: #ffffff;
+  margin: -25px 0 20px 0;
+  padding: 10px;
+}
+#error_img img {
+  float: left;
+  width: 20px;
+}
+
+/************************************************************************************
+* SLIDESHOW - BACKGROUND IMAGE ROATION SETTING
+************************************************************************************/
+.cb-slideshow,
+.cb-slideshow:after {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+}
+.cb-slideshow:after {
+  content: "";
+  /*background: transparent url(pattern.png) repeat top left;*/
+}
+.cb-slideshow {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  color: transparent;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: none;
+  z-index: 0;
+  display: none;
+  -webkit-backface-visibility: hidden;
+}
+.progress-bar {
+  width: 100%;
+  background: #e0e0e0;
+  position: absolute;
+  bottom: 0;
+  opacity: 1;
+}
+
+.progress-bar-fill {
+  display: block;
+  height: 2px;
+  background: #00a3d9;
+  transition: width 0s ease-in-out;
+}
+
+/* Show at least something when animations not supported */
+.no-cssanimations .cb-slideshow li span {
+  opacity: 1;
+}
+
+@media screen and (max-width: 1140px) {
+  .cb-slideshow li div h3 {
+    font-size: 140px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .cb-slideshow li div h3 {
+    font-size: 80px;
+  }
+}
