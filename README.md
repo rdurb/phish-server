@@ -7,5 +7,7 @@ Instructions:
 
 Once you close the docker container, the server will stop.
 
+To switch websites, you need to close and re-build the container.
+
 Credit:
 All resources for the websites came from https://github.com/xHak9x/SocialPhish
