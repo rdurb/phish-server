@@ -1,4 +1,4 @@
-#Instructions:
+# Instructions:
 
 1. Run './build.sh' to build and run the docker container (this will also remove and rebuild a previous build of the image)
 2. Once inside the container, run 'python3 run.py' to start the script
